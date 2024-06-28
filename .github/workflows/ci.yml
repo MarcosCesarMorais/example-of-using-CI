@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - main  # ajuste conforme a sua branch principal
+      - master  
   pull_request:
     branches:
-      - main  # ajuste conforme a sua branch principal
+      - master  
 
 jobs:
   test:
@@ -20,10 +20,13 @@ jobs:
     - name: Configurar Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  # ajuste conforme a versão do Node.js que você está utilizando
+        node-version: '14'  
 
     - name: Instalar Dependências
       run: npm install
 
-    - name: Executar Testes
-      run: npm test
+    - name: Instalar jest
+      run: npm install --save-dev jest
+
+    - name: Executar Test
+      run: npx jest
